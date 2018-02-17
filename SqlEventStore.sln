@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStore", "SqlEventStore\SqlEventStore.csproj", "{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreTests", "SqlEventStoreTests\SqlEventStoreTests.csproj", "{4702C5D2-B7BF-4123-8B8E-52340EA62E60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreStress", "SqlEventStoreStress\SqlEventStoreStress.csproj", "{74E64F5F-C794-4A36-AB40-3861B849E249}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreCli", "SqlEventStoreCli\SqlEventStoreCli.csproj", "{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4702C5D2-B7BF-4123-8B8E-52340EA62E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4702C5D2-B7BF-4123-8B8E-52340EA62E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4702C5D2-B7BF-4123-8B8E-52340EA62E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4702C5D2-B7BF-4123-8B8E-52340EA62E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E64F5F-C794-4A36-AB40-3861B849E249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E64F5F-C794-4A36-AB40-3861B849E249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E64F5F-C794-4A36-AB40-3861B849E249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E64F5F-C794-4A36-AB40-3861B849E249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {009F1EE4-6E33-4B17-977C-99EEF6260473}
+	EndGlobalSection
+EndGlobal
