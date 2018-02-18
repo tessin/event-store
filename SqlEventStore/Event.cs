@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlEventStore
+namespace EventSourcing
 {
-    public class SqlEvent
+    public class Event
     {
         public long Id { get; }
         public Guid StreamId { get; }
@@ -16,7 +16,7 @@ namespace SqlEventStore
         public int UncompressedSize { get; }
         public DateTimeOffset Created { get; }
 
-        public SqlEvent(long id, Guid streamId, int sequenceNumber, Guid typeId, byte[] payload, int uncompressedSize, DateTimeOffset created)
+        public Event(long id, Guid streamId, int sequenceNumber, Guid typeId, byte[] payload, int uncompressedSize, DateTimeOffset created)
         {
             this.Id = id;
             this.StreamId = streamId;

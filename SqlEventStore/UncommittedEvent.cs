@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlEventStore
+namespace EventSourcing
 {
     public class UncommittedEvent
     {

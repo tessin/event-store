@@ -1,4 +1,5 @@
-﻿using SqlEventStore;
+﻿using EventSourcing;
+using EventSourcing.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace SqlEventStoreCli
                     switch (split[0])
                     {
                         case "create":
-                            LocalDB.Create(database: split[1]);
+                            SqlLocalDB.Create(database: split[1]);
                             break;
                         case "exit":
                             return;

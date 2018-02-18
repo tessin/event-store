@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SqlEventStore.SqlClient
+namespace EventSourcing.SqlServer
 {
     public class SqlEventDataReader : IDisposable
     {
@@ -48,7 +44,7 @@ namespace SqlEventStore.SqlClient
 
         public void Dispose()
         {
-            ((IDisposable)_reader).Dispose();
+            _reader.Dispose();
         }
     }
 }

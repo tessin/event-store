@@ -3,13 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStore", "SqlEventStore\SqlEventStore.csproj", "{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing", "SqlEventStore\EventSourcing.csproj", "{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreTests", "SqlEventStoreTests\SqlEventStoreTests.csproj", "{4702C5D2-B7BF-4123-8B8E-52340EA62E60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreStress", "SqlEventStoreStress\SqlEventStoreStress.csproj", "{74E64F5F-C794-4A36-AB40-3861B849E249}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlEventStoreCli", "SqlEventStoreCli\SqlEventStoreCli.csproj", "{449A1F4D-CAE1-4B1C-8AE7-B8A6E115C634}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B77953BC-E467-4729-88E2-48B6ADD02CA0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		DESIGN.md = DESIGN.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

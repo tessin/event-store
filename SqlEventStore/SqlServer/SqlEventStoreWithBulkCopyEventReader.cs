@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SqlEventStore
+namespace EventSourcing.SqlServer
 {
-    class UncommittedEventReader : IDataReader
+    class SqlEventStoreWithBulkCopy : IDataReader
     {
         private IEnumerator<UncommittedEvent> uncommited;
 
-        public UncommittedEventReader(IEnumerable<UncommittedEvent> uncommited)
+        public SqlEventStoreWithBulkCopy(IEnumerable<UncommittedEvent> uncommited)
         {
             this.uncommited = uncommited.GetEnumerator();
         }

@@ -1,43 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
+﻿using EventSourcing;
+using EventSourcing.SqlServer;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SqlEventStoreTests
 {
     [TestClass]
     public abstract class EventStoreBaseTest
     {
-        public SqlEventStore.SqlEventStore EventStore { get; private set; }
+        private SqlLocalDB _db;
+        public SqlEventStore EventStore { get; private set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            var connStr = new SqlConnectionStringBuilder();
+            _db = new SqlLocalDB();
 
-            connStr.DataSource = @"(LocalDB)\MSSQLLocalDB";
-            connStr.IntegratedSecurity = true;
-
-            var db = $"es_test_{Environment.TickCount}";
-
-            using (var conn = new SqlConnection(connStr.ToString()))
-            {
-                conn.Open();
-                var cmd = new SqlCommand($"create database [{db}]", conn);
-                cmd.ExecuteNonQuery();
-                conn.ChangeDatabase(db);
-            }
-
-            connStr.InitialCatalog = db;
-
-            EventStore = new SqlEventStore.SqlEventStore(connStr.ToString());
-            EventStore.CreateAsync().GetAwaiter().GetResult();
+            EventStore = new SqlEventStore(_db.ConnectionString);
+            EventStore.Database.InitializeAsync().GetAwaiter().GetResult();
         }
 
         [TestCleanup]
@@ -45,26 +26,84 @@ namespace SqlEventStoreTests
         {
             foreach (var e in EventStore.GetEnumerable())
             {
-                Debug.WriteLine(JsonConvert.SerializeObject(e, Formatting.Indented));
-            }
-
-            var connStr = new SqlConnectionStringBuilder();
-
-            connStr.DataSource = @"(LocalDB)\MSSQLLocalDB";
-            connStr.IntegratedSecurity = true;
-
-            using (var conn = new SqlConnection(connStr.ToString()))
-            {
-                conn.Open();
-
-                var cmd1 = new SqlCommand($"alter database [{EventStore.Database}] set offline with rollback immediate", conn);
-                cmd1.ExecuteNonQuery();
-
-                var cmd2 = new SqlCommand($"drop database [{EventStore.Database}]", conn);
-                cmd2.ExecuteNonQuery();
+                Debug.WriteLine($"{e.Id},{e.StreamId},{e.SequenceNumber},{e.TypeId},{e.Payload},{e.UncompressedSize},{e.Created}");
             }
 
             EventStore = null;
+
+            _db.Dispose();
+            _db = null;
+        }
+
+        protected static byte[] Payload(int size)
+        {
+            var bytes = new byte[size];
+            for (int i = 0; i < size; i++)
+            {
+                bytes[i] = (byte)i;
+            }
+            return bytes;
+        }
+
+        protected class EventAssertionBuilder
+        {
+            public Event Actual { get; }
+
+            public EventAssertionBuilder(Event actual)
+            {
+                if (actual == null)
+                {
+                    throw new ArgumentNullException(nameof(actual));
+                }
+                this.Actual = actual;
+            }
+
+            public EventAssertionBuilder Id(long expected)
+            {
+                Assert.AreEqual(expected, Actual.Id);
+                return this;
+            }
+
+            public EventAssertionBuilder StreamId(Guid expected)
+            {
+                Assert.AreEqual(expected, Actual.StreamId);
+                return this;
+            }
+
+            public EventAssertionBuilder SequenceNumber(int expected)
+            {
+                Assert.AreEqual(expected, Actual.SequenceNumber);
+                return this;
+            }
+
+            public EventAssertionBuilder TypeId(Guid expected)
+            {
+                Assert.AreEqual(expected, Actual.TypeId);
+                return this;
+            }
+
+            public EventAssertionBuilder Payload(byte[] expected)
+            {
+                CollectionAssert.AreEqual(expected, Actual.Payload);
+                return this;
+            }
+
+            public EventAssertionBuilder UncompressedSize(int expected)
+            {
+                Assert.AreEqual(expected, Actual.UncompressedSize);
+                return this;
+            }
+
+            public EventAssertionBuilder Created(DateTimeOffset expected)
+            {
+                Assert.AreEqual(expected.Ticks / TimeSpan.TicksPerSecond, Actual.Created.Ticks / TimeSpan.TicksPerSecond, 1);
+                return this;
+            }
+        }
+
+        protected static EventAssertionBuilder AssertEvent(Event actual)
+        {
+            return new EventAssertionBuilder(actual);
         }
     }
 }

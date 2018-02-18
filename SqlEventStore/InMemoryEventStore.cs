@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlEventStore
+namespace EventSourcing
 {
     public class InMemoryEventStore : IEventStore
     {
@@ -31,7 +30,7 @@ namespace SqlEventStore
                     {
                         if (!(e.SequenceNumber == sequenceNumber + 1))
                         {
-                            throw new EventStoreDataRaceException($"cannot commit StreamID={e.StreamId}, SequenceNumber={e.SequenceNumber}", null);
+                            throw new EventRaceException($"cannot commit StreamID={e.StreamId}, SequenceNumber={e.SequenceNumber}", null);
                         }
                         sequenceNumber++;
                     }
@@ -71,6 +70,29 @@ namespace SqlEventStore
             for (int i = (int)(minId - 1); i <= upperBound; i++)
             {
                 yield return store[i];
+            }
+        }
+
+        public IEnumerable<Event> GetEnumerableStream(Guid streamId, int minSequenceNumber = 1, int maxSequenceNumber = int.MaxValue)
+        {
+            if (minSequenceNumber < 1) throw new ArgumentOutOfRangeException(nameof(minSequenceNumber));
+
+            var store = _store;
+            if (store.Count == 0)
+            {
+                yield break;
+            }
+
+            var index = _index;
+            if (!index.TryGetValue(streamId, out var stream))
+            {
+                yield break;
+            }
+
+            var upperBound = Math.Min(maxSequenceNumber, stream.Count);
+            for (int i = minSequenceNumber - 1; i <= upperBound; i++)
+            {
+                yield return store[stream[i]];
             }
         }
     }

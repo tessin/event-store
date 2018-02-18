@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SqlEventStore\SqlEventStore.csproj">
+    <ProjectReference Include="..\SqlEventStore\EventSourcing.csproj">
       <Project>{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}</Project>
-      <Name>SqlEventStore</Name>
+      <Name>EventSourcing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

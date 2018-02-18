@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlEventStore
+namespace EventSourcing
 {
-    public class SqlEventStoreDataRaceException : Exception
+    public class EventRaceException : Exception
     {
-        public SqlEventStoreDataRaceException(string message, Exception innerException)
+        public EventRaceException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
