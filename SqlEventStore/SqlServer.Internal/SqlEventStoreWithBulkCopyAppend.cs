@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     class SqlEventStoreWithBulkCopyAppend : DelegateEventStore, ISqlEventStore
     {

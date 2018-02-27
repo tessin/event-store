@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlTypes;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     public class SqlUncommittedEventDataRecord
     {

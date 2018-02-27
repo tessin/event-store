@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     static class SqlScript
     {

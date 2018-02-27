@@ -1,4 +1,4 @@
-﻿namespace EventSourcing.SqlServer
+﻿namespace EventCore.SqlServer
 {
     public static class SqlEventStoreExtensions
     {

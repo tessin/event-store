@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     public class SqlEventDataReader : IDisposable
     {

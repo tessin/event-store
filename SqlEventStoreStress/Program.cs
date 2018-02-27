@@ -1,5 +1,5 @@
-﻿using EventSourcing;
-using EventSourcing.SqlServer;
+﻿using EventCore;
+using EventCore.SqlServer;
 using MathNet.Numerics;
 using System;
 using System.Collections.Generic;

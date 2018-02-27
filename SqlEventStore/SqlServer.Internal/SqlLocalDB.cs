@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     public class SqlLocalDB : IDisposable
     {

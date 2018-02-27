@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EventSourcing;
+using EventCore;
 using System.Linq;
-using EventSourcing.SqlServer;
+using EventCore.SqlServer;
 
 namespace SqlEventStoreTests
 {

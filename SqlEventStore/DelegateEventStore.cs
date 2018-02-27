@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EventSourcing
+namespace EventCore
 {
     public abstract class DelegateEventStore : IEventStore
     {

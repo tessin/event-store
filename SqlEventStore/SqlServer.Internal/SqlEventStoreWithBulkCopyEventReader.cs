@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     class SqlEventStoreWithBulkCopy : IDataReader
     {

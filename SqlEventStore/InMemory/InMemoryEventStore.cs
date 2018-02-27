@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EventSourcing
+namespace EventCore.InMemory
 {
     public class InMemoryEventStore : IEventStore
     {

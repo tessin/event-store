@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Threading.Tasks;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     public class SqlEventStore : ISqlEventStore
     {

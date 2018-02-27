@@ -1,5 +1,5 @@
-﻿using EventSourcing;
-using EventSourcing.SqlServer;
+﻿using EventCore;
+using EventCore.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;

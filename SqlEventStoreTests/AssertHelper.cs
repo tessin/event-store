@@ -1,4 +1,4 @@
-﻿using EventSourcing;
+﻿using EventCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace EventSourcing.SqlServer
+namespace EventCore.SqlServer
 {
     public class SqlEventStoreDatabase
     {
