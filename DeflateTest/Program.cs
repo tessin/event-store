@@ -35,24 +35,89 @@ namespace DeflateTest
 
         private static void Text()
         {
-            //var text2 = File.ReadAllText(@"..\..\text.txt");
-            var text2 = File.ReadAllText(@"rand.txt");
+            var text = File.ReadAllText(@"..\..\text.txt");
+            //var text2 = File.ReadAllText(@"rand.txt");
 
-            for (int i = 1; i <= 20; i++)
+            var blockSizes = new int[] { 1 * 1024, 4 * 1024, 8 * 1024, 16 * 1024 };
+
+            Console.Write("N;uncompressed");
+            foreach (var blockSize in blockSizes)
             {
-                var text = text2.Substring(0, Math.Min(text2.Length, 100 * i));
+                Console.Write($";compressed{blockSize}");
+            }
+            foreach (var blockSize in blockSizes)
+            {
+                Console.Write($";ratio{blockSize}");
+            }
+            foreach (var blockSize in blockSizes)
+            {
+                Console.Write($";throughput{blockSize}");
+            }
+            Console.WriteLine();
 
-                var buffer = new MemoryStream();
+            for (int i = 1; i <= 16; i++)
+            {
+                var bytes = _encoding.GetBytes(text.Substring(0, i * 1024));
 
-                var deflate = new DeflateStream(buffer, CompressionLevel.Optimal, true);
+                var output = new MemoryStream();
 
-                var textWriter = new StreamWriter(deflate, _encoding);
-                textWriter.Write(text);
-                textWriter.Flush();
+                //var deflate = new DeflateStream(buffer, CompressionLevel.Optimal, true);
 
-                deflate.Dispose();
+                //var textWriter = new StreamWriter(deflate, _encoding);
+                //textWriter.Write(text);
+                //textWriter.Flush();
 
-                Console.WriteLine($"{text.Length:N0}\t{(double)_encoding.GetByteCount(text) / buffer.Length:N2}\t{_encoding.GetByteCount(text) - buffer.Length:N0}");
+                //deflate.Dispose();
+
+                var cols = new List<Tuple<int, int, double, double>>();
+
+                foreach (var blockSize in blockSizes)
+                {
+                    var blockBuffer = new BlockCompressionBuffer(blockSize);
+
+                    var input = new MemoryStream(bytes, false);
+
+                    var sw = new Stopwatch();
+
+                    int n;
+                    for (n = 0; n < 1000; n++)
+                    {
+                        // reset
+                        input.Position = 0;
+
+                        output.Position = 0;
+                        output.SetLength(0);
+
+                        sw.Start();
+
+                        BlockCompression.Compress(input, output, blockBuffer);
+
+                        sw.Stop();
+                    }
+
+                    var t = bytes.Length / sw.Elapsed.TotalSeconds; // Kbytes / s
+
+                    var uncompressedSize = bytes.Length;
+                    var compressedSize = (int)output.Length;
+                    var ratio = compressedSize / (double)uncompressedSize;
+
+                    cols.Add(Tuple.Create(uncompressedSize, compressedSize, ratio, sw.Elapsed.TotalSeconds)); // actually milliseconds
+                }
+
+                Console.Write($"{i};{cols[0].Item1}");
+                foreach (var col in cols)
+                {
+                    Console.Write($";{col.Item2}");
+                }
+                foreach (var col in cols)
+                {
+                    Console.Write($";{col.Item3:0.00}");
+                }
+                foreach (var col in cols)
+                {
+                    Console.Write($";{col.Item4:0.00}");
+                }
+                Console.WriteLine();
             }
         }
 

@@ -16,6 +16,12 @@ namespace EventCore.SqlServer
 
         public bool Read()
         {
+            // todo: https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqldatareader.getstream?view=netframework-4.7.1
+
+            // use GetStream and block compression to stream decompression (reusable private memory)
+
+            // minimize GC pressure
+
             var reader = _reader;
             if (reader.Read())
             {

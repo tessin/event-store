@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing", "SqlEventStore\EventSourcing.csproj", "{866596E0-9B5A-40DB-998C-5F3C1DA9EDEE}"
 EndProject
@@ -21,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventCore.Domain", "EventCore.Domain\EventCore.Domain.csproj", "{8F7D3BC0-3F2F-4AFE-8FFB-51AB0B9BC1B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeflateTest", "DeflateTest\DeflateTest.csproj", "{C823C941-2E67-47BE-8898-EEE0C28AE83F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.AzureStorage", "EventSourcing.AzureStorage\EventSourcing.AzureStorage.csproj", "{2583DBE2-4CDF-4521-A61E-AE294ED1DDC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +54,10 @@ Global
 		{C823C941-2E67-47BE-8898-EEE0C28AE83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C823C941-2E67-47BE-8898-EEE0C28AE83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C823C941-2E67-47BE-8898-EEE0C28AE83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2583DBE2-4CDF-4521-A61E-AE294ED1DDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2583DBE2-4CDF-4521-A61E-AE294ED1DDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2583DBE2-4CDF-4521-A61E-AE294ED1DDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2583DBE2-4CDF-4521-A61E-AE294ED1DDC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

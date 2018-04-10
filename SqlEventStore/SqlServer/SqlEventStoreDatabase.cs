@@ -34,7 +34,7 @@ namespace EventCore.SqlServer
         {
             var type = GetType();
 
-            using (var script = new StreamReader(type.Assembly.GetManifestResourceStream($"{type.Namespace}.es-schema.sql")))
+            using (var script = new StreamReader(type.Assembly.GetManifestResourceStream($"{type.Namespace}.Internal.es-schema.sql")))
             {
                 using (var conn = await OpenAsync())
                 {

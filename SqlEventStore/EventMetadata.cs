@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -53,7 +54,7 @@ namespace EventCore.EventModel
 
             var typeId = new Guid(guidAttribute.Value);
 
-            EventMetadata.RegisterType(typeId, type, (Event e) => new Envelope<TEvent>(e.StreamId, e.SequenceNumber, JsonConvert.DeserializeObject<TEvent>(e.Payload), e.Created));
+            //EventMetadata.RegisterType(typeId, type, (Event e) => new Envelope<TEvent>(e.StreamId, e.SequenceNumber, JsonConvert.DeserializeObject<TEvent>(e.Payload), e.Created));
 
             TypeId = typeId;
         }

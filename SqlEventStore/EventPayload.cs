@@ -28,6 +28,8 @@ namespace EventSourcing
             {
 
             }
+
+            throw new NotImplementedException();
         }
     }
 }
