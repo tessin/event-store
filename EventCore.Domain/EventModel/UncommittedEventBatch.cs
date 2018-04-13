@@ -24,9 +24,13 @@ namespace EventCore.EventModel
             _batch = batch;
         }
 
-        public void Append(UncommittedEvent e)
+        public void Append(UncommittedEvent uncommitted)
         {
-            _batch.Add(e);
+            if (uncommitted == null)
+            {
+                throw new ArgumentNullException(nameof(uncommitted));
+            }
+            _batch.Add(uncommitted);
         }
     }
 }

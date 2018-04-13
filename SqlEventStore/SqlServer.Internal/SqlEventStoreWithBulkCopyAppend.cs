@@ -40,7 +40,7 @@ namespace EventCore.SqlServer
                 }
                 catch (SqlException ex) when (ex.Number == 2601)
                 {
-                    throw new EventRaceException("a data race has been detected", ex);
+                    throw new EventDataRaceException("a data race has been detected", ex);
                 }
             }
         }

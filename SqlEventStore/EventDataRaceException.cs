@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventCore
 {
-    public class EventRaceException : Exception
+    public class EventDataRaceException : Exception
     {
-        public EventRaceException(string message, Exception innerException)
+        public EventDataRaceException(string message, Exception innerException)
             : base(message, innerException)
         {
         }

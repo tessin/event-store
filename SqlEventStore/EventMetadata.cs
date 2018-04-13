@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EventCore.EventModel
 {
@@ -42,6 +40,7 @@ namespace EventCore.EventModel
     }
 
     public static class EventMetadata<TEvent>
+        where TEvent : class, new()
     {
         public static readonly Guid TypeId;
 
@@ -54,9 +53,21 @@ namespace EventCore.EventModel
 
             var typeId = new Guid(guidAttribute.Value);
 
-            //EventMetadata.RegisterType(typeId, type, (Event e) => new Envelope<TEvent>(e.StreamId, e.SequenceNumber, JsonConvert.DeserializeObject<TEvent>(e.Payload), e.Created));
+            EventMetadata.RegisterType(typeId, type, (Event e) => new EventEnvelope<TEvent>(e.Id, e.StreamId, e.SequenceNumber, DeserializeObject<TEvent>(e.Payload), e.Created));
 
             TypeId = typeId;
+        }
+
+        public static EventEnvelope<TEvent> Envelope(Event e)
+        {
+            return (EventEnvelope<TEvent>)EventMetadata.Envelope(TypeId, e);
+        }
+
+        private static T DeserializeObject<T>(byte[] payload)
+        {
+            var value = Encoding.UTF8.GetString(payload);
+            var obj = JsonConvert.DeserializeObject<T>(value);
+            return obj;
         }
     }
 }

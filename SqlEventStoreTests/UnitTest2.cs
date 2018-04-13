@@ -50,7 +50,7 @@ namespace SqlEventStoreTests
             }
         }
 
-        [TestMethod]
+        [TestMethod, Ignore("benchmark")]
         public async Task TestMethod1()
         {
             var streamId = Guid.NewGuid();
@@ -64,7 +64,7 @@ namespace SqlEventStoreTests
 
             // S0
             //await ForEachAsync(GetTestDataStream(10000), e => EventStore.AppendAsync(new[] { e }), 60);
-            
+
             // S3
             //await ForEachAsync(GetTestDataStream(10000), e => EventStore.AppendAsync(new[] { e }), 200);
 

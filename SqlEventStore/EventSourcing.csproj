@@ -45,14 +45,14 @@
   <ItemGroup>
     <Compile Include="DelegateEventStore.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventEnvelope.cs" />
     <Compile Include="EventMetadata.cs" />
     <Compile Include="EventPayload.cs" />
-    <Compile Include="EventRaceException.cs" />
+    <Compile Include="EventDataRaceException.cs" />
     <Compile Include="IEventStore.cs" />
     <Compile Include="InMemory\InMemoryEventStore.cs" />
     <Compile Include="InterlockedExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\IEventSerializer.cs" />
     <Compile Include="SqlServer\ISqlEventStore.cs" />
     <Compile Include="SqlServer\SqlEventStoreDatabase.cs" />
     <Compile Include="SqlServer\SqlEventStoreExtensions.cs" />

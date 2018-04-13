@@ -18,6 +18,8 @@ namespace EventCore.SqlServer
 
         public async Task<SqlConnection> OpenAsync()
         {
+            // todo: SQL Azure connection retry policy
+
             var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
             return conn;
@@ -25,6 +27,8 @@ namespace EventCore.SqlServer
 
         public SqlConnection Open()
         {
+            // todo: SQL Azure connection retry policy
+
             var conn = new SqlConnection(_connectionString);
             conn.Open();
             return conn;

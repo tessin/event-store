@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace EventCore
 {
     public interface IHandler<TEvent>
+        where TEvent : class, new()
     {
-        void Handle(TEvent e);
+        void Handle(EventEnvelope<TEvent> e);
     }
 }

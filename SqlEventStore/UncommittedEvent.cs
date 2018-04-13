@@ -11,17 +11,15 @@ namespace EventCore
         public Guid StreamId { get; }
         public int SequenceNumber { get; }
         public Guid TypeId { get; }
-        public byte[] Payload { get; }
-        public int UncompressedSize { get; }
+        public object Payload { get; }
         public DateTimeOffset Created { get; }
 
-        public UncommittedEvent(Guid streamId, int sequenceNumber, Guid typeId, byte[] payload, int uncompressedSize, DateTimeOffset created)
+        public UncommittedEvent(Guid streamId, int sequenceNumber, Guid typeId, object payload, DateTimeOffset created)
         {
             this.StreamId = streamId;
             this.SequenceNumber = sequenceNumber;
             this.TypeId = typeId;
             this.Payload = payload;
-            this.UncompressedSize = uncompressedSize;
             this.Created = created;
         }
     }

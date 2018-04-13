@@ -30,7 +30,7 @@ namespace EventCore.InMemory
                     {
                         if (!(e.SequenceNumber == sequenceNumber + 1))
                         {
-                            throw new EventRaceException($"cannot commit StreamID={e.StreamId}, SequenceNumber={e.SequenceNumber}", null);
+                            throw new EventDataRaceException($"cannot commit StreamID={e.StreamId}, SequenceNumber={e.SequenceNumber}", null);
                         }
                         sequenceNumber++;
                     }

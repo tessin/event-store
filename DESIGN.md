@@ -1,7 +1,7 @@
 ﻿
 # Compression
 
-The `DeflateTest` program is mean to illustrate what kind of bandwith we need.
+The `DeflateTest` program is mean to illustrate what kind of bandwidth we need.
 
 ~~~
            Write: 139,287 op/s  32,358 KiB/s  4.30 op/KiB
@@ -12,4 +12,4 @@ The `DeflateTest` program is mean to illustrate what kind of bandwith we need.
 1.36
 ~~~
 
-Note that we can write a lot faster than we can read but as soon as we enable compression, writing takes a tremendous hit. However, without compression the bandwith requirement is 250 Mbit/s.
+Note that we can write a lot faster than we can read but as soon as we enable compression, writing takes a tremendous hit. However, without compression the bandwidth requirement is 250 Mbit/s.

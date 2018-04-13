@@ -22,9 +22,10 @@ namespace EventCore.AggregateModel
     class AggregateEventHandler
     {
         public static AggregateEventHandler<TAggregate> Create<TAggregate, TEvent>()
-             where TAggregate : IHandler<TEvent>
+            where TAggregate : IHandler<TEvent>
+            where TEvent : class, new()
         {
-            return new AggregateEventHandler<TAggregate>(EventMetadata<TEvent>.TypeId, (aggregate, e) => aggregate.Handle(JsonConvert.DeserializeObject<TEvent>(e.Payload)));
+            return new AggregateEventHandler<TAggregate>(EventMetadata<TEvent>.TypeId, (aggregate, e) => aggregate.Handle(EventMetadata<TEvent>.Envelope(e)));
         }
     }
 }
